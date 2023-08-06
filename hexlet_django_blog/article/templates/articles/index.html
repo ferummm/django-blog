@@ -5,6 +5,7 @@
 {% block content %}
     <h1>О блоге</h1>
     <p>Эксперименты с Django на Хекслете</p>
-    <p>{{ tags|join:', ' }}</p>
-    <h1>{{app_name}}</h1>
+    {% if article_id %}
+    <h1>Статья номер {{ article_id }}. Тег {{ tags }}</h1>
+    {% endif %}
 {% endblock %}

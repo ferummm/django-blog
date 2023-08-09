@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Эксперименты с Django на Хекслете{% endblock %}
-
 {% block content %}
-    <h1>О блоге</h1>
-    <p>Эксперименты с Django на Хекслете</p>
-    {% if article_id %}
-    <h1>Статья номер {{ article_id }}. Тег {{ tags }}</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
     {% endif %}
+
+    <h1>Articles</h1> <small><a href="{% url 'article_create'%}">Create an article</a></small>
+
+    {% for article in articles %}
+        <h2><a href="{% url 'the_article' article.id %}">{{ article.name }}</a></h2>
+        <div>{{ article.body|slice:":50" }}...</div>
+        <small><a href="{% url 'article_update' article.id %}">Edit</a></small>
+        <small> {% include "articles/delete.html" %}</small>
+    {% endfor %}
 {% endblock %}

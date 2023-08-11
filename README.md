@@ -1,1 +1,2 @@
-study project django-blog
+Study project django-blog with CRUD operations for Articles.
+
